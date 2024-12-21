@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout/layout}" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <!-- Bootstrap CSS 추가 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>회원가입</title>
+</head>
+<body>
+<div layout:fragment="content" class="container my-5">
+    <!-- 제목 -->
+    <div class="text-center mb-4">
+        <h4><i class="fas fa-user-plus"></i> 회원가입</h4>
+        <p class="text-muted">필수 정보를 입력해 주세요.</p>
+    </div>
+
+    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+        <div th:replace="~{partials/form_errors :: formErrorsFragment}"></div>
+
+        <!-- 사용자ID 입력 -->
+        <div class="mb-3">
+            <label for="username" class="form-label"><i class="fas fa-user"></i> 사용자ID</label>
+            <input id="username" type="text" th:field="*{username}" class="form-control" placeholder="사용자ID를 입력하세요" required>
+        </div>
+
+        <!-- 비밀번호 입력 -->
+        <div class="mb-3">
+            <label for="password1" class="form-label"><i class="fas fa-lock"></i> 비밀번호</label>
+            <input id="password1" type="password" th:field="*{password1}" class="form-control" placeholder="비밀번호를 입력하세요" required>
+        </div>
+
+        <!-- 비밀번호 확인 입력 -->
+        <div class="mb-3">
+            <label for="password2" class="form-label"><i class="fas fa-lock"></i> 비밀번호 확인</label>
+            <input id="password2" type="password" th:field="*{password2}" class="form-control" placeholder="비밀번호를 다시 입력하세요" required>
+        </div>
+
+        <!-- 이메일 입력 -->
+        <div class="mb-3">
+            <label for="email" class="form-label"><i class="fas fa-envelope"></i> 이메일</label>
+            <input id="email" type="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력하세요" required>
+        </div>
+
+        <!-- 제출 버튼 -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary w-100 btn-lg">
+                <i class="fas fa-user-plus"></i> 회원가입
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
